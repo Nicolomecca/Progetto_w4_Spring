@@ -12,5 +12,5 @@ public interface PostazioneRepository extends JpaRepository<Postazione, Long> {
 
     Optional<Postazione> findById(Long id);
 
-    List<Postazione> findByEdificioId(Long edificioId);
+
 }

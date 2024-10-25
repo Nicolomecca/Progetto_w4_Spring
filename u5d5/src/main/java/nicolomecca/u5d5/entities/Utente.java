@@ -23,8 +23,8 @@ public class Utente {
     @OneToMany(mappedBy = "utente")
     private List<Prenotazione> prenotazioni = new ArrayList<>();
 
-    public Utente(String userName, String nomeCompleto, String email) {
-        this.username = userName;
+    public Utente(String username, String nomeCompleto, String email) {
+        this.username = username;
         this.nomeCompleto = nomeCompleto;
         this.email = email;
     }
