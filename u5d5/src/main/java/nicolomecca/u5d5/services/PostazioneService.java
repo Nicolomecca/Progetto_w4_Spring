@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import nicolomecca.u5d5.entities.Edificio;
 import nicolomecca.u5d5.entities.Postazione;
 import nicolomecca.u5d5.entities.TipoPostazione;
+import nicolomecca.u5d5.exceptions.RisorsaNonTrovataException;
 import nicolomecca.u5d5.repositories.PostazioneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,7 @@ public class PostazioneService {
     private PostazioneRepository postazioneRepository;
 
     public List<Postazione> cercaPostazioni(TipoPostazione tipo, String città) {
-        return postazioneRepository.findByTipoAndEdificio_Citta(tipo, città);
+        return postazioneRepository.findByTipoAndEdificio_Città(tipo, città);
     }
 
     public Postazione creaPostazione(String codice, String descrizione, TipoPostazione tipo, int maxOccupanti, Edificio edificio) {
@@ -31,5 +32,10 @@ public class PostazioneService {
         return postazioneRepository.save(postazione);
     }
 
-
+    public Postazione findById(Long id) {
+        return postazioneRepository.findById(id)
+                .orElseThrow(() -> new RisorsaNonTrovataException("Postazione non trovata con id: " + id));
+    }
 }
+
+

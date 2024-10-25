@@ -40,7 +40,23 @@ public class PrenotazioneService {
                 throw new PrenotazioneNonValidaException("Postazione " + postazione.getCodice() + " già prenotata per la data " + data);
             }
         } else {
-            throw new PrenotazioneNonValidaException("Utente " + utente.getUserName() + " ha già una prenotazione per la data " + data);
+            throw new PrenotazioneNonValidaException("Utente " + utente.getUsername() + " ha già una prenotazione per la data " + data);
         }
     }
+
+    public void cancellaPrenotazione(Long id) {
+        Prenotazione prenotazione = prenotazioneRepository.findById(id)
+                .orElseThrow(() -> new RisorsaNonTrovataException("Prenotazione non trovata con id: " + id));
+        prenotazioneRepository.delete(prenotazione);
+    }
+
+    public List<Prenotazione> getPrenotazioniUtente(Utente utente) {
+        return prenotazioneRepository.findByUtente(utente);
+    }
+
+    public Prenotazione findById(Long id) {
+        return prenotazioneRepository.findById(id)
+                .orElseThrow(() -> new RisorsaNonTrovataException("Prenotazione non trovata con id: " + id));
+    }
+
 }

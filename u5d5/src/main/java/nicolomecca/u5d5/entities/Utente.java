@@ -16,7 +16,7 @@ public class Utente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String userName;
+    private String username;
     private String nomeCompleto;
     private String email;
 
@@ -24,7 +24,7 @@ public class Utente {
     private List<Prenotazione> prenotazioni = new ArrayList<>();
 
     public Utente(String userName, String nomeCompleto, String email) {
-        this.userName = userName;
+        this.username = userName;
         this.nomeCompleto = nomeCompleto;
         this.email = email;
     }
