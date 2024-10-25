@@ -54,9 +54,5 @@ public class PrenotazioneService {
         return prenotazioneRepository.findByUtente(utente);
     }
 
-    public Prenotazione findById(Long id) {
-        return prenotazioneRepository.findById(id)
-                .orElseThrow(() -> new RisorsaNonTrovataException("Prenotazione non trovata con id: " + id));
-    }
 
 }
